@@ -117,6 +117,7 @@ All errors share one shape:
 |---|---|---|---|
 | 401 | `UNAUTHENTICATED` | no | Missing, expired or invalid token |
 | 404 | `NOT_FOUND` | no | Resource doesn't exist or isn't yours |
+| 405 | `METHOD_NOT_ALLOWED` | no | Wrong HTTP method for a valid URL |
 | 409 | `CONVERSATION_CLOSED` | no | Message sent to a closed conversation |
 | 409 | `REQUEST_IN_PROGRESS` | yes | Same Idempotency-Key is still running |
 | 409 | `ACTION_NOT_PENDING` | no | Conflicting decision on an already-decided action |
