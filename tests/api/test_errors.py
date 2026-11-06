@@ -87,3 +87,17 @@ def test_invalid_body_returns_validation_error(project_settings):
         }
     }
     assert "far too long" not in response.text  # user input is never echoed back
+
+
+def test_unexpected_error_returns_safe_500(project_settings):
+    def crash():
+        raise RuntimeError("secret_details")
+
+    app = create_app(project_settings)
+    app.add_api_route("/crash", crash, methods=["GET"])
+    client = TestClient(app, raise_server_exceptions=False)
+    response = client.get("/crash")
+
+    assert response.status_code == 500
+    assert response.json()["error"]["code"] == "INTERNAL_ERROR"
+    assert "secret_details" not in response.text
