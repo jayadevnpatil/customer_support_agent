@@ -108,7 +108,7 @@ All errors share one shape:
     "message": "…",                      // safe to show to the customer
     "retryable": false,
     "correlation_id": "req_…",
-    "details": [ { "field": "message", "issue": "too_long" } ]   // validation errors only
+    "details": [ { "field": "message", "issue": "string_too_long", "message": "String should have at most 5 characters" } ]  // validation errors only
   }
 }
 ```
